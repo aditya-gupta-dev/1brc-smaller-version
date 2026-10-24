@@ -8,4 +8,8 @@ cities: ["Jaipur","Lucknow","Hisar","Amritsar","Chennai","Ahemdabad","Shillong",
 
 ## Perf Boost 1 (328 ms)
 
-#### Increased the buffer size & removing write calls ()
+Increased the buffer size & removing write calls ()
+
+## Perf Boost 2 (273 ms)
+
+added ';' at the end of all city names to reduce the write_all calls & using a lightweight random number generator
