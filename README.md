@@ -13,3 +13,7 @@ Increased the buffer size & removing write calls ()
 ## Perf Boost 2 (273 ms)
 
 added ';' at the end of all city names to reduce the write_all calls & using a lightweight random number generator
+
+## Perf Boost 3 (312 ms) 
+
+compiler flags and reduced buffer size to fit into L2 cache

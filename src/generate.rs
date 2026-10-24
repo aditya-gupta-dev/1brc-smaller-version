@@ -14,7 +14,7 @@ pub struct Config {
 impl Default for Config {
     fn default() -> Self {
         Config {
-            buffer_size: 64 * 1024 * 1024,
+            buffer_size: 256 * 1024,
             file_name: "measurements.txt",
             count: 10_000_000,
             cities: [
