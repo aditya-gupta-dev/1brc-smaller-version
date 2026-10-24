@@ -14,7 +14,7 @@ pub struct Config {
 impl Default for Config {
     fn default() -> Self {
         Config {
-            buffer_size: 1024 * 1024,
+            buffer_size: 64 * 1024 * 1024,
             file_name: "measurements.txt",
             count: 10_000_000,
             cities: [
@@ -36,12 +36,16 @@ impl Default for Config {
 pub fn generate_dataset(config: &Config) -> io::Result<()> {
     let file = std::fs::File::create(config.file_name)?;
     let mut buf_writer = std::io::BufWriter::with_capacity(config.buffer_size, file);
+    let mut int_buf = itoa::Buffer::new();
     let mut random_device = rand::rng();
 
     for _ in 0..config.count {
-        let city = config.cities[random_device.random_range(0..CITIES_SIZE)];
         let temp = random_device.random_range(50u32..120);
-        writeln!(buf_writer, "{};{}.{:01}", city, temp / 10, temp % 10)?;
+        buf_writer
+            .write_all(config.cities[random_device.random_range(0..CITIES_SIZE)].as_bytes())?;
+        buf_writer.write_all(b";")?;
+        buf_writer.write_all(int_buf.format(temp).as_bytes())?;
+        buf_writer.write_all(b"\n")?;
     }
 
     buf_writer.flush()?;
