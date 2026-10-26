@@ -17,3 +17,9 @@ added ';' at the end of all city names to reduce the write_all calls & using a l
 ## Perf Boost 3 (312 ms) 
 
 compiler flags and reduced buffer size to fit into L2 cache
+
+## Perf Boost 4 (220 ms)
+
+Pre-formatted temperatures into a lookup table, 
+batched buffer writes via raw pointers, 
+and split a single u64 RNG call per row.
